@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: server
+  template:
+    metadata:
+      labels:
+        component: server
+    spec:
+      containers:
+        - name: server
+          image: wadiukarunathilaka/judo-rank-server
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DDL_MODE
+              value: create
+            - name: DB_HOST
+              value: mysql-cluster-ip-service
+            - name: DB_USERNAME
+              value: root
+            - name: DB_NAME
+              value: judo-ranking
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysqlpassword
+                  key: MYSQLPASSWORD
