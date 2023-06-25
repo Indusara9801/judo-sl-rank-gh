@@ -1,0 +1,24 @@
+@import "../../../App.scss";
+
+.request {
+  @include flex($justify: space-between);
+  @include box-shadow();
+  width: 90%;
+  padding: 2rem;
+  margin: 1rem;
+  background-color: $white;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+  min-height: 12rem;
+
+  &:hover {
+    transform: scale(99%);
+  }
+  &__text {
+    width: 80%;
+  }
+  &__button {
+    @include flex();
+    width: 20%;
+  }
+}

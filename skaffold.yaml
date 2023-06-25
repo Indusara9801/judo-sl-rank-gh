@@ -1,0 +1,24 @@
+apiVersion: skaffold/v4beta5
+kind: Config
+metadata:
+  name: judo-sl-rank
+build:
+  artifacts:
+    - image: wadiukarunathilaka/judo-rank-client
+      context: client
+      docker:
+        dockerfile: Dockerfile.dev
+    - image: wadiukarunathilaka/judo-rank-server
+      context: server
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  rawYaml:
+    - k8s/client-cluster-ip-service.yaml
+    - k8s/client-deployment.yaml
+    - k8s/db-persistent-volume-claim.yaml
+    - k8s/ingress-service.yaml
+    - k8s/mysql-cluster-ip-service.yaml
+    - k8s/mysql-deplyment.yaml
+    - k8s/server-cluster-ip-servece.yaml
+    - k8s/server-deployment.yaml

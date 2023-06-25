@@ -1,0 +1,44 @@
+@import "../../App.scss";
+
+#section-header {
+  @include flex($direction: column);
+  width: 100vw;
+  height: 5vh;
+  background: $black;
+  padding: 2rem;
+}
+
+.header {
+  &__container {
+    width: $container-width;
+    @include flex($justify: space-between);
+  }
+
+  &__logo {
+  }
+
+  &__action {
+    @include flex();
+    &__nav {
+      ul {
+        @include flex();
+        list-style: none;
+
+        li {
+          .active {
+            color: $color-primary;
+          }
+          a {
+            text-decoration: none;
+            color: white;
+          }
+          margin-right: 2rem;
+        }
+      }
+    }
+
+    &__logout {
+      width: 9rem;
+    }
+  }
+}

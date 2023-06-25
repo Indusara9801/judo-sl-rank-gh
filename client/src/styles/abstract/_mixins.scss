@@ -1,0 +1,89 @@
+@mixin background-clip($property) {
+  background-clip: $property;
+  -moz-background-clip: $property;
+  -webkit-background-clip: $property;
+  color: transparent;
+}
+
+@mixin absolute-position($top, $left) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  transform: translate(-50%, -50%);
+}
+
+@mixin flex($justify: center, $align: center, $direction: row) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+}
+
+@mixin box-shadow($x: 0.1rem, $y: 0.2rem, $z: 0.5rem) {
+  box-shadow: $x $y $z rgba($black, 0.4);
+}
+
+$flexJustifyValues: ("center", "end", "start", "space-between");
+$flexAlignValues: ("center", "end", "start", "strech");
+
+@each $flexJustify in $flexJustifyValues {
+  @each $flexAlign in $flexAlignValues {
+    .flex-#{$flexJustify}-#{$flexAlign} {
+      display: flex;
+      justify-content: $flexJustify;
+      align-items: $flexAlign;
+    }
+  }
+}
+
+$values: (1, 2, 3, 4, 5);
+
+@each $value in $values {
+  .mb-#{$value} {
+    margin-bottom: #{$value}rem;
+  }
+  .mt-#{$value} {
+    margin-top: #{$value}rem;
+  }
+  .ml-#{$value} {
+    margin-left: #{$value}rem;
+  }
+  .mr-#{$value} {
+    margin-right: #{$value}rem;
+  }
+  .mh-#{$value} {
+    margin-right: #{$value}rem;
+    margin-left: #{$value}rem;
+  }
+  .mv-#{$value} {
+    margin-top: #{$value}rem;
+    margin-bottom: #{$value}rem;
+  }
+  .m-#{$value} {
+    margin: #{$value}rem;
+  }
+
+  .pb-#{$value} {
+    padding-bottom: #{$value}rem;
+  }
+  .pt-#{$value} {
+    padding-top: #{$value}rem;
+  }
+  .pl-#{$value} {
+    padding-left: #{$value}rem;
+  }
+  .pr-#{$value} {
+    padding-right: #{$value}rem;
+  }
+  .ph-#{$value} {
+    padding-right: #{$value}rem;
+    padding-left: #{$value}rem;
+  }
+  .pv-#{$value} {
+    padding-top: #{$value}rem;
+    padding-bottom: #{$value}rem;
+  }
+  .p-#{$value} {
+    padding: #{$value}rem;
+  }
+}

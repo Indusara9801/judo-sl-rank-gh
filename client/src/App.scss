@@ -1,0 +1,17 @@
+//abstract
+@import "styles/abstract/variables";
+@import "styles/abstract/mixins";
+
+//base
+@import "styles/base/reset";
+@import "styles/base/typography";
+
+//pages
+@import "styles/pages/login";
+@import "styles/pages/userInfo.scss";
+@import "styles/pages/signup";
+@import "styles/pages/admin/requests";
+@import "styles/pages/admin/players";
+@import "styles/pages/admin/player";
+@import "styles/pages/home/home";
+@import "styles/pages/tournament";

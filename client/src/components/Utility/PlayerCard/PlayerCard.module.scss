@@ -1,0 +1,53 @@
+@import "../../../App.scss";
+
+.player-card {
+  @include flex($justify: space-between);
+  @include box-shadow();
+  width: 90%;
+  padding: 2rem;
+  margin: 1rem;
+  background-color: $white;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+  min-height: 5rem;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(99%);
+  }
+  &__text {
+    width: 80%;
+  }
+
+  &__stripe--yellow {
+    background-color: yellow;
+    width: 2rem;
+    height: 100%;
+  }
+  &__stripe--orange {
+    background-color: orange;
+    width: 2rem;
+    height: 100%;
+  }
+  &__stripe--green {
+    background-color: green;
+    width: 2rem;
+    height: 100%;
+  }
+  &__stripe--blue {
+    background-color: blue;
+    width: 2rem;
+    height: 100%;
+  }
+  &__stripe--brown {
+    background-color: brown;
+    width: 2rem;
+    height: 100%;
+  }
+  &__stripe--black {
+    background-color: black;
+    width: 2rem;
+    height: 100%;
+  }
+
+}

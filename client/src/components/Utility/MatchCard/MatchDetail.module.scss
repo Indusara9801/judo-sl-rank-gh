@@ -1,0 +1,29 @@
+@import "../../../App.scss";
+
+.matchdetail {
+  @include flex($justify: space-between);
+  margin-top: 2rem;
+  width: 100%;
+  background-color: white;
+  border-radius: 2rem;
+  padding: 3rem;
+  @include box-shadow();
+  &__player {
+    @include flex($align: center, $justify: center, $direction: column);
+    width: 30%;
+    height: 30rem;
+    padding: 1rem;
+    text-align: center;
+    &__image {
+      width: 15rem;
+      height: 15rem;
+    }
+    &__detail {
+      @include flex($align: center, $direction: column);
+      overflow: hidden;
+    }
+    &__match {
+      @include flex($align: center, $direction: column);
+    }
+  }
+}

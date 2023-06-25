@@ -1,0 +1,99 @@
+#section-tournament {
+  @include flex($direction: column, $justify: flex-start);
+  height: 100vh;
+  width: 100vw;
+  padding: 4rem;
+}
+
+.tournament {
+  width: $container-width;
+  height: 20vh;
+  @include flex($direction: column, $justify: flex-start, $align: center);
+  gap: 2rem;
+  &__details {
+    background: linear-gradient(to top right, $color-primary, $color-secondary);
+    padding: 2rem;
+    // margin-top: -4rem;
+    width: 90%;
+    height: 100%;
+    @include flex($justify: flex-start);
+    border-radius: 2rem;
+    gap: 3rem;
+
+    &__stat {
+      height: 100%;
+      @include flex(
+        $direction: column,
+        $align: flex-start,
+        $justify: flex-start
+      );
+    }
+
+    &__main {
+      height: 100%;
+      @include flex(
+        $direction: column,
+        $align: flex-start,
+        $justify: flex-start
+      );
+    }
+  }
+  &__table {
+    margin-top: 1rem;
+    border-radius: 1rem;
+    thead {
+      tr {
+        background-color: $black;
+        color: $white;
+        border-radius: 1rem;
+        th {
+          width: 25rem;
+          padding: 1rem;
+          font-size: 2em;
+          text-align: center;
+          &:first-child {
+            border-radius: 1rem 0 0 0;
+          }
+          &:last-child {
+            border-radius: 0 1rem 0 0;
+          }
+        }
+      }
+    }
+    tbody {
+      tr {
+        padding: 1rem;
+        font-size: 1.3em;
+        border: 2px solid black;
+        td {
+          width: 25rem;
+          padding: 1rem;
+          font-size: 1.3em;
+          text-align: center;
+        }
+        &:nth-child(even) {
+          background-color: rgba($black, 0.4);
+        }
+      }
+    }
+  }
+
+  &__image-container {
+    width: 200px;
+    height: 200px;
+    background-color: $color-primary;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  &__image-loading {
+    width: 100%;
+    height: 100%;
+    background-color: $color-primary;
+  }
+}

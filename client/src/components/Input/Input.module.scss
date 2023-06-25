@@ -1,0 +1,46 @@
+@import "../../App.scss";
+
+.form-control {
+  font-size: 1.6em;
+  margin-bottom: 1rem;
+  width: 95%;
+  input,
+  label {
+    display: block;
+  }
+  input,
+  select {
+    font-family: $heading-font;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 100%;
+  }
+
+  label {
+    font-family: $heading-font;
+    font-size: 1.8em;
+    margin-bottom: 0.5rem;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: $color-success;
+    background-color: lighten($color: $color-success, $amount: 60%);
+  }
+}
+
+.invalid {
+  input {
+    border: 1px solid $color-error;
+    background-color: lighten($color: $color-error, $amount: 30%);
+  }
+  input:focus {
+    border: 1px solid $color-error;
+    background-color: lighten($color: $color-error, $amount: 35%);
+  }
+}
+
+.error-text {
+  color: $color-error;
+}

@@ -1,0 +1,17 @@
+@import "../../../App.scss";
+
+.matchcard {
+  @include flex($justify: flex-start, $direction: column);
+  background-color: $white;
+  width: 80%;
+  border-radius: 2rem;
+  height: 15rem;
+  padding: 1rem;
+  @include box-shadow();
+  &__summary {
+    height: 4rem;
+  }
+  &:hover {
+    transform: scale(99%);
+  }
+}

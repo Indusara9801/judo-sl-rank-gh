@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: client
-          image: wadiukarunathilaka/judo-rank-client:v1
+          image: wadiukarunathilaka/judo-client
           ports:
             - containerPort: 5173 

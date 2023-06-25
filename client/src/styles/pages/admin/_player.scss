@@ -1,0 +1,97 @@
+#section-player {
+  @include flex($direction: column, $justify: flex-start);
+  height: 100vh;
+  width: 100vw;
+  padding: 10rem;
+}
+
+.player {
+  width: $container-width;
+  height: 20vh;
+  @include flex($direction: column, $justify: center, $align: center);
+  gap: 2rem;
+  &__details {
+    background: linear-gradient(to top right, $color-primary, $color-secondary);
+    padding: 2rem;
+    margin-top: 4rem;
+    width: 90%;
+    height: 100%;
+    @include flex($justify: flex-start);
+    border-radius: 2rem;
+    gap: 3rem;
+
+    &__stat {
+      height: 100%;
+      @include flex(
+        $direction: column,
+        $align: flex-start,
+        $justify: flex-start
+      );
+    }
+
+    &__stripe--yellow {
+      margin-left: 19.5rem;
+      background-color: yellow;
+      width: 3rem;
+      height: 100%;
+    }
+    &__stripe--orange {
+      margin-left: 19.5rem;
+      background-color: orange;
+      width: 3rem;
+      height: 100%;
+    }
+    &__stripe--green {
+      margin-left: 19.5rem;
+      background-color: green;
+      width: 3rem;
+      height: 100%;
+    }
+    &__stripe--blue {
+      margin-left: 19.5rem;
+      background-color: blue;
+      width: 3rem;
+      height: 100%;
+    }
+    &__stripe--brown {
+      margin-left: 19.5rem;
+      background-color: brown;
+      width: 3rem;
+      height: 100%;
+    }
+    &__stripe--black {
+      margin-left: 19.5rem;
+      background-color: black;
+      width: 3rem;
+      height: 100%;
+    }
+
+    &__main {
+      height: 100%;
+      @include flex(
+        $direction: column,
+        $align: flex-start,
+        $justify: flex-start
+      );
+    }
+  }
+
+  &__image-container {
+    width: 200px;
+    height: 200px;
+    background-color: $color-primary;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  &__image-loading {
+    width: 100%;
+    height: 100%;
+    background-color: $color-primary;
+  }
+}

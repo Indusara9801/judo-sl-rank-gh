@@ -1,0 +1,6 @@
+#section-requests {
+  @include flex($direction: column);
+  height: 100vh;
+  width: 100vw;
+  padding: 2rem;
+}

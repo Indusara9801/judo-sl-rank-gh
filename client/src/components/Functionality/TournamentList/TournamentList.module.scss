@@ -1,0 +1,45 @@
+@import "../../../App.scss";
+
+.tournamentlist {
+  width: 100%;
+  @include flex($direction: column);
+  &__table {
+    margin-top: 1rem;
+    border-radius: 1rem;
+    thead {
+      tr {
+        background-color: $black;
+        color: $white;
+        border-radius: 1rem;
+        th {
+          width: 25rem;
+          padding: 1rem;
+          font-size: 2em;
+          text-align: center;
+          &:first-child {
+            border-radius: 1rem 0 0 0;
+          }
+          &:last-child {
+            border-radius: 0 1rem 0 0;
+          }
+        }
+      }
+    }
+    tbody {
+      tr {
+        padding: 1rem;
+        font-size: 1.3em;
+        border: 2px solid black;
+        td {
+          width: 25rem;
+          padding: 1rem;
+          font-size: 1.3em;
+          text-align: center;
+        }
+        &:nth-child(even) {
+          background-color: rgba($black, 0.4);
+        }
+      }
+    }
+  }
+}

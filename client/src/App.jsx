@@ -1,44 +1,85 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import axios from 'axios';
+import "./App.scss";
+import {
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom/cjs/react-router-dom.min";
+import AccountConfirm from "./pages/AccountConfirm";
+import AddUserInfo from "./pages/UserInfo";
+import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import Payment from "./pages/Payment";
+import Players from "./pages/Admin/Players";
+import Player from "./pages/Admin/Player";
+import Requests from "./pages/Admin/Requests";
+import Tournament from "./pages/Tournament";
+import axios from "axios";
+import { localStorageKeys } from "./constants";
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [msg, setMsg] = useState();
-  useEffect(() => {
-    (async () => {
-      const value = await axios.get('/api/db');
-      setMsg(value.data);
-    })();
-  }, [])
-
+  axios.interceptors.request.use((config) => {
+    const data = config.url.split("/");
+    config.headers["Content-Type"] = "application/json";
+    if (!data.includes("auth")) {
+      config.headers["Authorization"] = `Bearer ${localStorage.getItem(
+        localStorageKeys.ACCESS_TOKEN
+      )}`;
+    }
+    console.log("INTERCEPTED --> ", config);
+    return config;
+  });
+  axios.interceptors.response.use(async (config) => {
+    return config;
+  });
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-          {msg && msg}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Switch>
+        <Route path="/accountConfirm">
+          <AccountConfirm />
+        </Route>
+        <Route path="/signup/userInfo">
+          <AddUserInfo />
+        </Route>
+        <Route path="/signup/playerInfo">
+          <SignUp />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/admin" exact>
+          <Redirect to="/admin/players" />
+        </Route>
+        <Route path="/home">
+          <Home />
+        </Route>
+        <Route path="/payment">
+          <Payment />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/signup/userInfo">
+          <AddUserInfo />
+        </Route>
+        <Route path="/signup/playerInfo">
+          <SignUp />
+        </Route>
+        <Route path="/admin/players" exact>
+          <Players />
+        </Route>
+        <Route path="/admin/players/:id" exact>
+          <Player />
+        </Route>
+        <Route path="/admin/tournament">
+          <Tournament />
+        </Route>
+        <Route path="/admin/requests">
+          <Requests />
+        </Route>
+      </Switch>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

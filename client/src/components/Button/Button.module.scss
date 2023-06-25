@@ -1,0 +1,42 @@
+@import "../../App.scss";
+
+%btn {
+    display: inline-block;
+    border-radius: 6px;
+    padding: 1rem 2.5rem;
+    margin: .3rem;
+    color: $white;
+    font-size: 1.6em;
+    font-weight: 700;
+    border: none;
+    box-shadow: 1px 2px 5px rgba($black, .4);
+    transition: all .2s;
+    width: 95%;
+
+    &:disabled{
+        background-color: $color-disabled;
+        cursor: not-allowed;
+    }
+
+    &[disabled]:hover{
+        transform: scale(1);
+    }
+
+    &:hover{
+        transform: scale(.98);
+    }
+}
+
+.btn--primary{
+    @extend %btn;
+    position: relative;
+    background-color: $color-primary;
+    padding: 1rem;
+}
+.btn--secondary{
+    @extend %btn;
+    position: relative;
+    background-color: $color-secondary;
+    padding: 1rem;
+}
+
