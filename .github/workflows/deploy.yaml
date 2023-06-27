@@ -34,8 +34,8 @@ jobs:
       - name: Get Credentials
         uses: google-github-actions/get-gke-credentials@v0
         with:
-          cluster_name: judo-ranking-cluster
-          location: us-central1-c
+          cluster_name: autopilot-cluster-1
+          location: us-central1
  
       - name: Build
         run: |-
