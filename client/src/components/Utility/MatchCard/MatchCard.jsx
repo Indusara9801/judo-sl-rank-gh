@@ -4,7 +4,6 @@ import MatchDetail from "./MatchDetail";
 
 const MatchCard = ({ match }) => {
   const [detailToggle, setDetailToggle] = useState(false);
-  console.log(detailToggle);
   return (
     <>
       <div
@@ -19,7 +18,11 @@ const MatchCard = ({ match }) => {
           <div className="heading-dark-5">{match.name}</div>
         </div>
       </div>
-      {detailToggle && <MatchDetail mid={match.mid} />}
+      {detailToggle && (
+        <MatchDetail
+          match={{ player1: match.matchPlayer1, player2: match.matchPlayer2 }}
+        />
+      )}
     </>
   );
 };

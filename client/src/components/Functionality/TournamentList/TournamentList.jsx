@@ -19,8 +19,8 @@ const TournamentList = () => {
     (async () => {
       setLocalState(loadingStateConst.PENDING);
       const res = await axios.get(
-        // `http://localhost:8080/playerTournament/${params.id}/${year}`
-        `/api/playerTournament/${params.id}/${year}`
+        `http://localhost:8080/playerTournament/${params.id}/${year}`
+        // `/api/playerTournament/${params.id}/${year}`
       );
       setTournamentList(res.data);
       setLocalState(loadingStateConst.FULLFILLED);
@@ -66,12 +66,12 @@ const TournamentList = () => {
                   console.log(item.position);
                   return (
                     <tr key={item.tournamentId}>
-                      <td>{item.tournamentname}</td>
+                      <td>{item.tournament}</td>
                       <td>{item.date}</td>
                       <td>{item.position}</td>
                       <td>
                         <Link
-                          to={`/admin/tournament/points?tournamentID=${item.tournamentID}`}
+                          to={`/admin/tournament/points?tournamentID=${item.tournamentId}`}
                         >
                           More details
                         </Link>

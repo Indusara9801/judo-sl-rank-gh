@@ -20,8 +20,8 @@ const Requests = () => {
         })
       );
       const res = await axios.get(
-        // "http://localhost:8080/admin/requests"
-        "/api/admin/requests"
+        "http://localhost:8080/admin/requests"
+        // "/api/admin/requests"
       );
       setRequests(res.data);
       dispatch(

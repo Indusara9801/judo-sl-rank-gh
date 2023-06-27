@@ -12,8 +12,8 @@ const AccountConfirm = () => {
   useEffect(() => {
     (async () => {
       const val = await axios.get(
-        // `http://localhost:8080/auth/accountConfirm/${token}`
-        `/api/auth/accountConfirm/${token}`
+        `http://localhost:8080/auth/accountConfirm/${token}`
+        // `/api/auth/accountConfirm/${token}`
       );
       if (val.data) {
         localStorage.setItem("accessToken", val.data.accessToken);

@@ -17,8 +17,8 @@ export const signUpUser = createAsyncThunk(
         );
         try {
             await axios.post(
-                // "http://localhost:8080/auth/account",
-                "/api/auth/account",
+                "http://localhost:8080/auth/account",
+                // "/api/auth/account",
                 userData,
             );
             dispatch(
@@ -54,8 +54,8 @@ export const logInUser = createAsyncThunk(
         );
         try {
             const response = await axios.post(
-                // "http://localhost:8080/auth/authenticate",
-                "/api/auth/authenticate",
+                "http://localhost:8080/auth/authenticate",
+                // "/api/auth/authenticate",
                 userData,
             );
             console.log(response)

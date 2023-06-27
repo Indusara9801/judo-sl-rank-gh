@@ -12,7 +12,8 @@ const TabBar = ({ valueList, onClickRadio, defaultVal, width }) => {
           const uniqueVal = uuidv4();
           return (
             <label
-              for={`item_${index}_${uniqueVal}`}
+              key={index}
+              htmlFor={`item_${index}_${uniqueVal}`}
               className={classes.navbar__tabbar__tab}
               style={{ width }}
             >

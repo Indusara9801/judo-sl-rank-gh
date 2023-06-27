@@ -19,7 +19,7 @@ spec:
             - containerPort: 8080
           env:
             - name: DDL_MODE
-              value: create
+              value: none
             - name: DB_HOST
               value: mysql-cluster-ip-service
             - name: DB_USERNAME

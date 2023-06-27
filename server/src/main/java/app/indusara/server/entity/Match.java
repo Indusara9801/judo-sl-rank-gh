@@ -17,7 +17,7 @@ public class Match {
 
     private String name;
 
-    private Integer weighClass;
+    private Integer weightClass;
 
     private String division;
 

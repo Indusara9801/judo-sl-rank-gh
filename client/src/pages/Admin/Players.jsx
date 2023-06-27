@@ -20,8 +20,8 @@ const Players = () => {
         })
       );
       const res = await axios.get(
-        // "http://localhost:8080/admin/users"
-        "/api/admin/users"
+        "http://localhost:8080/admin/users"
+        // "/api/admin/users"
       );
       setPlayers(res.data);
       dispatch(
