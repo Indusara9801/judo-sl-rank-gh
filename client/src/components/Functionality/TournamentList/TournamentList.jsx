@@ -19,8 +19,8 @@ const TournamentList = () => {
     (async () => {
       setLocalState(loadingStateConst.PENDING);
       const res = await axios.get(
-        `http://localhost:8080/playerTournament/${params.id}/${year}`
-        // `/api/playerTournament/${params.id}/${year}`
+        // `http://localhost:8080/playerTournament/${params.id}/${year}`
+        `/api/playerTournament/${params.id}/${year}`
       );
       setTournamentList(res.data);
       setLocalState(loadingStateConst.FULLFILLED);

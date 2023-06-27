@@ -17,8 +17,8 @@ const MatchDetail = ({ match }) => {
   const getMoreInfo = async (player) => {
     if (player.playerInDb) {
       const res = await axios.get(
-        `http://localhost:8080/player/${player.playerId}`
-        // `/api/player/${params.id}`
+        // `http://localhost:8080/player/${player.playerId}`
+        `/api/player/${player.playerId}`
       );
       console.log(res.data);
       return {

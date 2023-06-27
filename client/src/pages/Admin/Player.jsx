@@ -23,8 +23,8 @@ const Player = () => {
         })
       );
       const res = await axios.get(
-        `http://localhost:8080/player/${params.id}`
-        // `/api/player/${params.id}`
+        // `http://localhost:8080/player/${params.id}`
+        `/api/player/${params.id}`
       );
       setPlayer(res.data);
       dispatch(

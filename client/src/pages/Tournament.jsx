@@ -37,7 +37,8 @@ const Tournament = () => {
       );
 
       const res = await axios.get(
-        `http://localhost:8080/tournament/${tournamentId}`
+        // `http://localhost:8080/tournament/${tournamentId}`
+        `/api/tournament/${tournamentId}`
       );
       const tournamentDetails = res.data;
 
