@@ -111,4 +111,15 @@ export const userTypes = {
   ADMIN: "ADMIN"
 }
 
+export const environments = {
+  DEV: "DEV",
+  PROD: "PROD"
+}
+
+export const env = environments.PROD;
+
+export const url = env === environments.DEV ? 'http://localhost:8080' : '/api'
+
+
+
 apiErrors.set("auth/email-already-in-use", "The email is already in use.");

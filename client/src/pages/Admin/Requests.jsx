@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Search from "../../components/Utility/SearchBar/Search";
 import { loadingStateActions } from "../../store/loading-state/loading-state";
-import { loadingStateConst, searchItems } from "../../constants";
+import { loadingStateConst, searchItems, url } from "../../constants";
 import LottieAnimation from "../../components/Utility/LottieAnimation/LottieAnimation";
 import Header from "../../components/Header/Header";
 import axios from "axios";
@@ -20,8 +20,7 @@ const Requests = () => {
         })
       );
       const res = await axios.get(
-        // "http://localhost:8080/admin/requests"
-        "/api/admin/requests"
+        `${url}/admin/requests`
       );
       setRequests(res.data);
       dispatch(
