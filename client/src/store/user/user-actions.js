@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { errorTypes, loadingStateConst, localStorageKeys } from "../../constants";
+import { errorTypes, loadingStateConst, localStorageKeys, url } from "../../constants";
 import { loadingStateActions } from "../loading-state/loading-state";
 import { statusActions } from "../status/status";
 import { statusConst } from "../../constants";
@@ -17,8 +17,7 @@ export const signUpUser = createAsyncThunk(
         );
         try {
             await axios.post(
-                // "http://localhost:8080/auth/account",
-                "/api/auth/account",
+                `${url}/auth/account`,
                 userData,
             );
             dispatch(
@@ -54,8 +53,7 @@ export const logInUser = createAsyncThunk(
         );
         try {
             const response = await axios.post(
-                // "http://localhost:8080/auth/authenticate",
-                "/api/auth/authenticate",
+                `${url}/auth/authenticate`,
                 userData,
             );
             console.log(response)

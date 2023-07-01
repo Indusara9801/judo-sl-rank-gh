@@ -1,6 +1,6 @@
 import classes from "./TournamentList.module.scss";
 import { useEffect, useState } from "react";
-import { loadingStateConst } from "../../../constants";
+import { loadingStateConst, url } from "../../../constants";
 import { useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import LottieAnimation from "../../Utility/LottieAnimation/LottieAnimation";
@@ -19,8 +19,7 @@ const TournamentList = () => {
     (async () => {
       setLocalState(loadingStateConst.PENDING);
       const res = await axios.get(
-        // `http://localhost:8080/playerTournament/${params.id}/${year}`
-        `/api/playerTournament/${params.id}/${year}`
+        `${url}/playerTournament/${params.id}/${year}`
       );
       setTournamentList(res.data);
       setLocalState(loadingStateConst.FULLFILLED);

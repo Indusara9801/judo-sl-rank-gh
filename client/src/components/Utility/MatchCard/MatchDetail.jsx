@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import classes from "./MatchDetail.module.scss";
 
-import { loadingStateConst } from "../../../constants";
+import { loadingStateConst, url } from "../../../constants";
 import { handleFailure } from "../../../common";
 import { useDispatch } from "react-redux";
 import LottieAnimation from "../LottieAnimation/LottieAnimation";
@@ -17,8 +17,7 @@ const MatchDetail = ({ match }) => {
   const getMoreInfo = async (player) => {
     if (player.playerInDb) {
       const res = await axios.get(
-        // `http://localhost:8080/player/${player.playerId}`
-        `/api/player/${player.playerId}`
+        `${url}/player/${player.playerId}`
       );
       console.log(res.data);
       return {

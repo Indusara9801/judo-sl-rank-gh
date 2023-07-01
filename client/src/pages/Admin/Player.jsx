@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loadingStateConst } from "../../constants";
+import { loadingStateConst, url } from "../../constants";
 import LottieAnimation from "../../components/Utility/LottieAnimation/LottieAnimation";
 import { loadingStateActions } from "../../store/loading-state/loading-state";
 import TournamentList from "../../components/Functionality/TournamentList/TournamentList";
@@ -23,8 +23,7 @@ const Player = () => {
         })
       );
       const res = await axios.get(
-        // `http://localhost:8080/player/${params.id}`
-        `/api/player/${params.id}`
+        `${url}/player/${params.id}`
       );
       setPlayer(res.data);
       dispatch(

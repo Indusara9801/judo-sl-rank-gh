@@ -4,6 +4,7 @@ import {
   useLocation,
 } from "react-router-dom/cjs/react-router-dom.min";
 import axios from "axios";
+import { url } from "../constants";
 
 const AccountConfirm = () => {
   const location = useLocation();
@@ -15,8 +16,7 @@ const AccountConfirm = () => {
   useEffect(() => {
     (async () => {
       const val = await axios.get(
-        // `http://localhost:8080/auth/accountConfirm/${token}`
-        `/api/auth/accountConfirm/${token}`
+        `${url}/auth/accountConfirm/${token}`
       );
       if (val.data && val.data === "Account Verified") {
         history.push("login");
