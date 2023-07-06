@@ -5,12 +5,12 @@ import { useState, useEffect } from "react";
 import { loadingStateActions } from "../store/loading-state/loading-state";
 import { loadingStateConst } from "../constants";
 
-import { handleFailure } from "../common";
 import Header from "../components/Header/Header";
 import TabBar from "../components/TabBar/TabBar";
 import { Route, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import MatchCard from "../components/Utility/MatchCard/MatchCard";
 import axios from "axios";
+import { url } from "../constants";
 
 const Tournament = () => {
   const dispatch = useDispatch();
@@ -172,10 +172,10 @@ const Tournament = () => {
               <div className="tournament__details__main">
                 <div className="heading-light-3 mb-2">
                   
-                  {tournament.points.tournament}
+                  {tournament.tournament.points.tournament}
                 </div>
                 <div className="heading-light-6 ml-1">
-                  {tournament.date}
+                  {tournament.tournament.date}
                 </div>
               </div>
               <div className="tournament__details__stat"></div>
@@ -206,47 +206,47 @@ const Tournament = () => {
                     <tbody>
                       <tr>
                         <td>First</td>
-                        <td>{tournament.points.first}</td>
+                        <td>{tournament.tournament.points.first}</td>
                       </tr>
                       <tr>
                         <td>Second</td>
-                        <td>{tournament.points.second}</td>
+                        <td>{tournament.tournament.points.second}</td>
                       </tr>
                       <tr>
                         <td>Third</td>
-                        <td>{tournament.points.third}</td>
+                        <td>{tournament.tournament.points.third}</td>
                       </tr>
                       <tr>
-                        <td>Fourtd</td>
-                        <td>{tournament.points.fourth}</td>
+                        <td>Fourth</td>
+                        <td>{tournament.tournament.points.fourth}</td>
                       </tr>
                       <tr>
-                        <td>Fiftd</td>
-                        <td>{tournament.points.fifth}</td>
+                        <td>Fifth</td>
+                        <td>{tournament.tournament.points.fifth}</td>
                       </tr>
                       <tr>
-                        <td>Sixtd</td>
-                        <td>{tournament.points.sixth}</td>
+                        <td>Sixth</td>
+                        <td>{tournament.tournament.points.sixth}</td>
                       </tr>
                       <tr>
-                        <td>Seventd</td>
-                        <td>{tournament.points.seventh}</td>
+                        <td>Seventh</td>
+                        <td>{tournament.tournament.points.seventh}</td>
                       </tr>
                       <tr>
-                        <td>Eightd</td>
-                        <td>{tournament.points.eigth}</td>
+                        <td>Eighth</td>
+                        <td>{tournament.tournament.points.eigth}</td>
                       </tr>
                       <tr>
-                        <td>Nintd</td>
-                        <td>{tournament.points.ninth}</td>
+                        <td>Ninth</td>
+                        <td>{tournament.tournament.points.ninth}</td>
                       </tr>
                       <tr>
-                        <td>Tentd</td>
-                        <td>{tournament.points.tenth}</td>
+                        <td>Tenth</td>
+                        <td>{tournament.tournament.points.tenth}</td>
                       </tr>
                       <tr>
                         <td>Participation</td>
-                        <td>{tournament.points.participation}</td>
+                        <td>{tournament.tournament.points.participation}</td>
                       </tr>
                     </tbody>
                   </table>

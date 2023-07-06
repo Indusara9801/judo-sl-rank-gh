@@ -31,7 +31,7 @@ public class AccountController {
     @PostMapping("/account")
     public void registration(@RequestBody() Account account) {
         System.out.println(account);
-        account.setPassword(encoder.encode(account.getPassword()));
+
         account = accountService.create(account);
         eventPublisher.publishEvent(new OnCreateAccountEvent(account));
     }

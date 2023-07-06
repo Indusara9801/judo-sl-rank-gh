@@ -3,7 +3,6 @@ import Button from "../Utility/Button/Button";
 import { useDispatch } from "react-redux";
 import { signOutUser } from "../../store/user/user-actions";
 import {
-  Link,
   Route,
   NavLink,
   useHistory,
@@ -55,6 +54,14 @@ const Header = () => {
                       to="/admin/add"
                     >
                       Add Data
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      activeClassName={classes.active}
+                      to="/admin/tournaments"
+                    >
+                      Tournaments
                     </NavLink>
                   </li>
                 </Route>

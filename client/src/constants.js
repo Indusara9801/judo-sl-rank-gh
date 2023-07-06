@@ -49,9 +49,9 @@ export const provinceList = [
   "Western",
   "Southern",
   "Eastern",
-  "Nothern",
-  "North Western",
-  "North Central",
+  "Northern",
+  "North_Western",
+  "North_Central",
   "Central",
   "Sabaragamuwa",
   "Uva",
@@ -96,8 +96,19 @@ export const yearsStored = {
 };
 
 export const errorTypes = {
-  NO_PAYMENT: "No Payment",
-  EXPIRED: "Token Expired"
+  NO_PAYMENT: "NO_PAYMENT",
+  EXPIRED: "Token Expired",
+  SUCCESS: "SUCCESS",
+  INVALID_DISPLAY_NAME: "INVALID_DISPLAY_NAME",
+  INVALID_EMAIL: "INVALID_EMAIL",
+  INVALID_FULL_NAME: "INVALID_FULL_NAME",
+  INVALID_GENDER: "INVALID_GENDER",
+  INVALID_PASSWORD: "INVALID_PASSWORD",
+  INVALID_DOB: "INVALID_DOB",
+  INVALID_CLUB_NAME: "INVALID_CLUB_NAME",
+  INVALID_JUDO_GRADE: "INVALID_JUDO_GRADE",
+  INVALID_WEIGHT_CLASS: "INVALID_WEIGHT_CLASS",
+  INVALID_PROVINCE: "INVALID_PROVINCE"
 }
 
 export const localStorageKeys = {
@@ -116,10 +127,14 @@ export const environments = {
   PROD: "PROD"
 }
 
-export const env = environments.PROD;
+export const tournamentListTypes = {
+  ALL: "ALL",
+  PLAYER: "PLAYER"
+}
+
+export const env = environments.DEV;
 
 export const url = env === environments.DEV ? 'http://localhost:8080' : '/api'
 
 
 
-apiErrors.set("auth/email-already-in-use", "The email is already in use.");

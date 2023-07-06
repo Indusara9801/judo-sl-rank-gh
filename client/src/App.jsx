@@ -5,7 +5,6 @@ import {
   Redirect,
 } from "react-router-dom/cjs/react-router-dom.min";
 import AccountConfirm from "./pages/AccountConfirm";
-import AddUserInfo from "./pages/UserInfo";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -16,6 +15,7 @@ import Requests from "./pages/Admin/Requests";
 import Tournament from "./pages/Tournament";
 import axios from "axios";
 import { localStorageKeys } from "./constants";
+import Tournaments from "./pages/Admin/Tournaments";
 
 function App() {
   axios.interceptors.request.use((config) => {
@@ -38,10 +38,7 @@ function App() {
         <Route path="/accountConfirm">
           <AccountConfirm />
         </Route>
-        <Route path="/signup/userInfo">
-          <AddUserInfo />
-        </Route>
-        <Route path="/signup/playerInfo">
+        <Route path="/signup">
           <SignUp />
         </Route>
         <Route path="/login">
@@ -56,15 +53,6 @@ function App() {
         <Route path="/payment">
           <Payment />
         </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/signup/userInfo">
-          <AddUserInfo />
-        </Route>
-        <Route path="/signup/playerInfo">
-          <SignUp />
-        </Route>
         <Route path="/admin/players" exact>
           <Players />
         </Route>
@@ -76,6 +64,9 @@ function App() {
         </Route>
         <Route path="/admin/requests">
           <Requests />
+        </Route>
+        <Route path="/admin/tournaments">
+          <Tournaments />
         </Route>
       </Switch>
     </>

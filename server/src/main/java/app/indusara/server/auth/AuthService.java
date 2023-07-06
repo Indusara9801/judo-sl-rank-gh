@@ -3,7 +3,9 @@ package app.indusara.server.auth;
 import app.indusara.server.dao.*;
 import app.indusara.server.entity.Player;
 import app.indusara.server.entity.User;
+import app.indusara.server.exception.CustomException;
 import app.indusara.server.utill.Role;
+import app.indusara.server.validator.ValidationResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -46,21 +48,21 @@ public class AuthService {
         );
         var isUser = repository.findUserByEmail(request.getEmail());
         if (isUser.isEmpty()) {
-            return ResponseEntity.badRequest().body(FailedAuthenticationResponse.builder().type("No user").build());
+            throw new CustomException("User not found", "USER_NOT_FOUND");
         }
         User user = isUser.get();
         if (!user.getPayment()) {
-            return ResponseEntity.badRequest().body(FailedAuthenticationResponse.builder().type("No Payment").build());
+            throw new CustomException("Please make the payment to get access", ValidationResult.NO_PAYMENT.name());
         }
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         return ResponseEntity.ok(
                 SuccessAuthenticationResponse.
-                builder()
-                .accessToken(jwtToken)
-                .refreshToken(refreshToken)
-                .status(user.getAuthorities().toString())
-                .build()
+                        builder()
+                        .accessToken(jwtToken)
+                        .refreshToken(refreshToken)
+                        .status(user.getAuthorities().toString())
+                        .build()
         );
     }
 
@@ -69,13 +71,13 @@ public class AuthService {
             HttpServletResponse response
     ) throws IOException {
         final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
-        if(authHeader == null || !authHeader.startsWith("Bearer ")) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             var authResponse = FailedAuthenticationResponse
                     .builder()
                     .type("Refresh token invalid")
                     .build();
             new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
-            return ;
+            return;
         }
         // 7 since 'Bearer ' has 7 characters
         final String refreshToken = authHeader.substring(7);
@@ -88,17 +90,17 @@ public class AuthService {
                     .type("No Username")
                     .build();
             new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
-            return ;
+            return;
         }
         var userDetails = this.repository.findUserByEmail(userEmail)
-                    .orElseThrow();
+                .orElseThrow();
         if (jwtService.isTokenExpired(refreshToken)) {
             var authResponse = FailedAuthenticationResponse
                     .builder()
                     .type("Access token expired")
                     .build();
             new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
-            return ;
+            return;
         }
         if (!jwtService.isTokenValid(refreshToken, userDetails)) {
             var authResponse = FailedAuthenticationResponse
@@ -106,16 +108,16 @@ public class AuthService {
                     .type("Username mismatch")
                     .build();
             new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
-            return ;
+            return;
         }
         var accessToken = jwtService.generateToken(userDetails);
         System.out.println(accessToken);
         var authResponse = SuccessAuthenticationResponse
-                        .builder()
-                        .accessToken(accessToken)
-                        .refreshToken(refreshToken)
-                        .status(userDetails.getAuthorities().toString())
-                        .build();
+                .builder()
+                .accessToken(accessToken)
+                .refreshToken(refreshToken)
+                .status(userDetails.getAuthorities().toString())
+                .build();
         new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
     }
 }

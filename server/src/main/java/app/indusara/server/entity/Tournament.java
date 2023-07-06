@@ -1,5 +1,6 @@
 package app.indusara.server.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,6 +26,7 @@ public class Tournament {
     @JoinColumn(name = "point_id")
     private Points points;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "tournament")
     private List<Match> matches;
 

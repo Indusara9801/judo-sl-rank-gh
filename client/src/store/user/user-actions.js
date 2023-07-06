@@ -5,7 +5,7 @@ import { loadingStateActions } from "../loading-state/loading-state";
 import { statusActions } from "../status/status";
 import { statusConst } from "../../constants";
 import axios from "axios";
-import { formatRole } from "../../common";
+import { formatRole, handleFailure } from "../../common";
 
 export const signUpUser = createAsyncThunk(
     "signUpUser",
@@ -32,10 +32,11 @@ export const signUpUser = createAsyncThunk(
                 })
             );
         } catch (e) {
+            handleFailure(dispatch, e);
+        } finally {
             dispatch(
-                statusActions.setStatus({
-                    status: statusConst.ERROR,
-                    message: e.message
+                loadingStateActions.setLoadingState({
+                    loadingState: loadingStateConst.FULLFILLED,
                 })
             );
         }
@@ -66,22 +67,7 @@ export const logInUser = createAsyncThunk(
                 authenticated: true
             };
         } catch (e) {
-            console.log(e);
-            if (e.response.data.type === errorTypes.NO_PAYMENT) {
-                dispatch(
-                    statusActions.setStatus({
-                        status: statusConst.WARNING,
-                        message: "Please make the payment to get accesss"
-                    })
-                );
-            } else {
-                dispatch(
-                    statusActions.setStatus({
-                        status: statusConst.ERROR,
-                        message: e.message
-                    })
-                );
-            }
+            handleFailure(dispatch, e);
 
         } finally {
             dispatch(

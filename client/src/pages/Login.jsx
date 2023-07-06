@@ -124,7 +124,7 @@ const Login = () => {
               <p className="heading-dark-6">
                 Not a member? &nbsp;
                 <span>
-                  <Link to={"/signup/userInfo"}>Sign Up</Link>
+                  <Link to={"/signup"}>Sign Up</Link>
                 </span>
               </p>
             </div>
