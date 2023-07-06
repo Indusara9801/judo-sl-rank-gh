@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+
 import java.io.IOException;
 
 @Component
@@ -27,6 +28,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
     private final JWTService jwtService;
     private final UserDetailsService userDetailsService;
     private final UserRepository userRepository;
+
     @Override
     protected void doFilterInternal(
             @NonNull HttpServletRequest request,
@@ -35,8 +37,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
     ) throws ServletException, IOException {
         System.out.println("HERE");
         final String authHeader = request.getHeader("Authorization");
-        System.out.println(authHeader);
-        if(authHeader == null || !authHeader.startsWith("Bearer ")) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -44,12 +45,6 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             // 7 since 'Bearer ' has 7 characters
             final String jwt = authHeader.substring(7);
             final String userEmail = jwtService.extractUsername(jwt);
-            User user = userRepository.findUserByEmail(userEmail).orElseThrow();
-            if(!user.getPayment()) {
-                response.setStatus(401);
-                new ObjectMapper().writeValue(response.getOutputStream(), "No Payment");
-                return ;
-            }
             if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
                 if (jwtService.isTokenValid(jwt, userDetails)) {
@@ -70,8 +65,6 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
         } catch (ExpiredJwtException e) {
             response.setStatus(401);
             new ObjectMapper().writeValue(response.getOutputStream(), "Token Expired");
-        } catch (Exception e) {
-            System.out.println(e);
         } finally {
             filterChain.doFilter(request, response);
         }

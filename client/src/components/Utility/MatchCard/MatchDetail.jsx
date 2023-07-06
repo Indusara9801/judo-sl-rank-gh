@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import classes from "./MatchDetail.module.scss";
 
 import { loadingStateConst, url } from "../../../constants";
-import { handleFailure } from "../../../common";
-import { useDispatch } from "react-redux";
 import LottieAnimation from "../LottieAnimation/LottieAnimation";
 import image from "../../../assets/user.png";
 import axios from "axios";
@@ -11,7 +9,6 @@ import axios from "axios";
 const MatchDetail = ({ match }) => {
   const [localState, setLocalState] = useState(loadingStateConst.IDLE);
   const [matchDetail, setMatchDetail] = useState({});
-  const dispatch = useDispatch();
 
   console.log(match);
   const getMoreInfo = async (player) => {

@@ -1,34 +1,27 @@
-import { loadingStateActions } from "./store/loading-state/loading-state";
 import { statusActions } from "./store/status/status";
-import { apiErrors, loadingStateConst, statusConst } from "./constants";
+import { errorTypes, statusConst } from "./constants";
 
-const errorKeys = [...apiErrors.keys()];
 
-export const handleFailure = (dispatch, err, reject) => {
-  if (reject) reject(err.message);
-  dispatch(
-    loadingStateActions.setLoadingState({
-      loadingState: loadingStateConst.ERROR,
-    })
-  );
 
-  if (errorKeys.includes(err.code)) {
+export const handleFailure = (dispatch, e) => {
+  console.log(e);
+  if (Object.prototype.hasOwnProperty.call(errorTypes, e.response.data.title)) {
     dispatch(
       statusActions.setStatus({
         status: statusConst.ERROR,
-        message: apiErrors.get(err.code),
+        message: e.response.data.message
       })
     );
   } else {
     dispatch(
       statusActions.setStatus({
         status: statusConst.ERROR,
-        message: err.message,
+        message: e.message
       })
     );
   }
 };
 
 export const formatRole = (roleString) => {
-  return roleString.replace(/\[|\]/g,'');
+  return roleString.replace(/\[|\]/g, '');
 }

@@ -35,15 +35,8 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        System.out.println("SELECT " +
-                "`judo-ranking`.tournament.id, `judo-ranking`.points.tournament, `judo-ranking`.tournament.date, `judo-ranking`.tournament.year, `judo-ranking`.participate.position " +
-                "FROM `judo-ranking`.tournament JOIN `judo-ranking`.points " +
-                "ON `judo-ranking`.tournament.id = `judo-ranking`.points.id " +
-                "JOIN `judo-ranking`.participate " +
-                "ON `judo-ranking`.tournament.id = `judo-ranking`.participate.tournament_id " +
-                "WHERE `judo-ranking`.tournament.year = 2021 AND `judo-ranking`.participate.player_id = 1");
         http
-                .cors(configurer -> configurer.disable())
+                .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(configurer ->
                     configurer

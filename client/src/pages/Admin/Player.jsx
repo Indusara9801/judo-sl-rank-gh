@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loadingStateConst, url } from "../../constants";
+import { loadingStateConst, tournamentListTypes, url } from "../../constants";
 import LottieAnimation from "../../components/Utility/LottieAnimation/LottieAnimation";
 import { loadingStateActions } from "../../store/loading-state/loading-state";
 import TournamentList from "../../components/Functionality/TournamentList/TournamentList";
@@ -93,7 +93,7 @@ const Player = () => {
                 }
               ></div>
             </div>
-            <TournamentList pid={params.id} />
+            <TournamentList pid={params.id} type={tournamentListTypes.PLAYER}/>
           </div>
         )}
       </section>
