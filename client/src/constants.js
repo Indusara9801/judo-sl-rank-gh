@@ -132,7 +132,7 @@ export const tournamentListTypes = {
   PLAYER: "PLAYER"
 }
 
-export const env = environments.DEV;
+export const env = environments.PROD;
 
 export const url = env === environments.DEV ? 'http://localhost:8080' : '/api'
 
