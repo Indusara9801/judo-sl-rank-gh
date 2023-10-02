@@ -1,8 +1,11 @@
 package app.indusara.server.service;
 
 import app.indusara.server.entity.Points;
-import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
 
 public interface IPointsService {
-    Points getPoints(int id);
+    Points getPointsById(int id);
+
+    List<Points> getPoints();
 }

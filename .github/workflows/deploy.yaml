@@ -1,58 +1,58 @@
-name: Deploy Judo Ranking
-on:
-  push:
-    branches:
-      - main
+# name: Deploy Judo Ranking
+# on:
+#   push:
+#     branches:
+#       - main
  
-env:
-  SHA: $(git rev-parse HEAD)
+# env:
+#   SHA: $(git rev-parse HEAD)
  
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
  
-      - name: Test
-        run: |-
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+#       - name: Test
+#         run: |-
+#           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
  
-      - name: Set Service Key
-        uses: 'google-github-actions/auth@v0'
-        with:
-          credentials_json: '${{ secrets.GKE_SA_KEY }}'
+#       - name: Set Service Key
+#         uses: 'google-github-actions/auth@v0'
+#         with:
+#           credentials_json: '${{ secrets.GKE_SA_KEY }}'
  
-      - name: Set Project
-        uses: google-github-actions/setup-gcloud@v0
-        with:
-          project_id: coral-bebop-390118
+#       - name: Set Project
+#         uses: google-github-actions/setup-gcloud@v0
+#         with:
+#           project_id: coral-bebop-390118
  
-      - name: Auth
-        run: |-
-          gcloud --quiet auth configure-docker
+#       - name: Auth
+#         run: |-
+#           gcloud --quiet auth configure-docker
  
-      - name: Get Credentials
-        uses: google-github-actions/get-gke-credentials@v0
-        with:
-          cluster_name: autopilot-cluster-1
-          location: us-central1
+#       - name: Get Credentials
+#         uses: google-github-actions/get-gke-credentials@v0
+#         with:
+#           cluster_name: autopilot-cluster-1
+#           location: us-central1
  
-      - name: Build
-        run: |-
-          docker build -t wadiukarunathilaka/judo-client:latest -t wadiukarunathilaka/judo-client:${{ env.SHA }} -f ./client/Dockerfile ./client
-          docker build -t wadiukarunathilaka/judo-server:latest -t wadiukarunathilaka/judo-server:${{ env.SHA }} -f ./server/Dockerfile ./server
+#       - name: Build
+#         run: |-
+#           docker build -t wadiukarunathilaka/judo-client:latest -t wadiukarunathilaka/judo-client:${{ env.SHA }} -f ./client/Dockerfile ./client
+#           docker build -t wadiukarunathilaka/judo-server:latest -t wadiukarunathilaka/judo-server:${{ env.SHA }} -f ./server/Dockerfile ./server
  
-      - name: Push
-        run: |-
-          docker push wadiukarunathilaka/judo-client:latest
-          docker push wadiukarunathilaka/judo-server:latest
+#       - name: Push
+#         run: |-
+#           docker push wadiukarunathilaka/judo-client:latest
+#           docker push wadiukarunathilaka/judo-server:latest
         
-          docker push wadiukarunathilaka/judo-client:${{ env.SHA }}
-          docker push wadiukarunathilaka/judo-server:${{ env.SHA }}
+#           docker push wadiukarunathilaka/judo-client:${{ env.SHA }}
+#           docker push wadiukarunathilaka/judo-server:${{ env.SHA }}
  
-      - name: Apply
-        run: |-
-          kubectl apply -f k8s
-          kubectl set image deployments/server-deployment server=wadiukarunathilaka/judo-server:${{ env.SHA }}
-          kubectl set image deployments/client-deployment client=wadiukarunathilaka/judo-client:${{ env.SHA }}
+#       - name: Apply
+#         run: |-
+#           kubectl apply -f k8s
+#           kubectl set image deployments/server-deployment server=wadiukarunathilaka/judo-server:${{ env.SHA }}
+#           kubectl set image deployments/client-deployment client=wadiukarunathilaka/judo-client:${{ env.SHA }}
           

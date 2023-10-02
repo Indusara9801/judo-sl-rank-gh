@@ -18,6 +18,7 @@ import InfoBanner from "../components/Utility/InfoBanner/InfoBanner";
 import Input from "../components/Utility/Input/Input";
 import LottieAnimation from "../components/Utility/LottieAnimation/LottieAnimation";
 import { signUpUser } from "../store/user/user-actions";
+import { dateFormatter } from "../common";
 
 const SignUp = () => {
   const [displayNameIsValid, setDisplayNameIsValid] = useState(false);
@@ -80,10 +81,6 @@ const SignUp = () => {
 
   console.log(status);
   console.log(loadingState);
-
-  const dateFormatter = (date) => {
-    return new Date(date).toLocaleString("sv").split(" ")[0].toString();
-  };
 
   if (
     displayNameIsValid &&
@@ -175,7 +172,7 @@ const SignUp = () => {
                   <div className="heading-dark-5">DOB</div>
                   <DatePicker
                     placeholderText="yyyy/mm/dd"
-                    className="signup-container__row__input"
+                    className="input"
                     dateFormat="yyyy/MM/dd"
                     selected={dob}
                     onChange={(date) => setDob(date)}
@@ -185,7 +182,7 @@ const SignUp = () => {
                 <div className="signup-container__row">
                   <div className="heading-dark-5">Gender</div>
                   <select
-                    className="signup-container__row__input"
+                    className="input"
                     value={gender}
                     placeholder="Select Gender"
                     onChange={(e) => {
@@ -210,7 +207,7 @@ const SignUp = () => {
                   <div className="heading-dark-5">Weight Class</div>
                   <select
                     disabled={gender == null}
-                    className="signup-container__row__input"
+                    className="input"
                     value={weightClass}
                     onChange={(e) => {
                       setWeightClass(e.target.value);
@@ -222,15 +219,15 @@ const SignUp = () => {
                     {gender === "male"
                       ? maleWeightClassList.map((option, index) => {
                           return (
-                            <option key={index} value={option}>
-                              {option}
+                            <option key={index} value={option.value}>
+                              {option.label}
                             </option>
                           );
                         })
                       : femaleWeightClassList.map((option, index) => {
                           return (
-                            <option key={index} value={option}>
-                              {option}
+                            <option key={index} value={option.value}>
+                              {option.label}
                             </option>
                           );
                         })}
@@ -242,13 +239,13 @@ const SignUp = () => {
                 <div className="signup-container__row">
                   <div className="heading-dark-5">Province</div>
                   <select
-                    className="signup-container__row__input"
+                    className="input"
                     value={province}
                     onChange={(e) => {
                       setProvince(e.target.value);
                     }}
                   >
-                     <option value={null} selected disabled hidden>
+                    <option value={null} selected disabled hidden>
                       Select a province
                     </option>
                     {provinceList.map((option, index) => {
@@ -264,13 +261,13 @@ const SignUp = () => {
                 <div className="signup-container__row">
                   <div className="heading-dark-5">Judo Grade</div>
                   <select
-                    className="signup-container__row__input"
+                    className="input"
                     value={judoGrade}
                     onChange={(e) => {
                       setJudoGrade(e.target.value);
                     }}
                   >
-                     <option value={null} selected disabled hidden>
+                    <option value={null} selected disabled hidden>
                       Select a judo grade
                     </option>
                     {judoGradeList.map((option, index) => {
@@ -312,7 +309,7 @@ const SignUp = () => {
 
             <div className="signup-container__buttons">
               {loadingState.loadingState === loadingStateConst.PENDING ? (
-                <LottieAnimation height={20} width={400} />
+                <LottieAnimation width={"20rem"} />
               ) : (
                 <Button
                   className={"btn--primary"}

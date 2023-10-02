@@ -6,4 +6,8 @@ import java.util.Optional;
 
 public interface IPlayerService {
     Player getPlayer(Integer id);
+
+    Player getPlayerByEmail(String email);
+
+
 }

@@ -19,9 +19,7 @@ const Players = () => {
           loadingState: loadingStateConst.PENDING,
         })
       );
-      const res = await axios.get(
-        `${url}/admin/users`
-      );
+      const res = await axios.get(`${url}/admin/users`);
       setPlayers(res.data);
       dispatch(
         loadingStateActions.setLoadingState({
@@ -41,7 +39,7 @@ const Players = () => {
             <div className="heading-dark-7">
               Please wait while the data loads
             </div>
-            <LottieAnimation height={20} width={400} />
+            <LottieAnimation width={"20rem"} />
           </>
         ) : (
           <Search

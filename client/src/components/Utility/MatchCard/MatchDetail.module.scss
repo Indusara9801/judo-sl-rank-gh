@@ -1,29 +1,90 @@
 @import "../../../App.scss";
 
+.penalty {
+  color: $color-pending;
+  font-size: 2rem;
+  margin: 5px;
+}
+
+.red-card {
+  color: $color-error;
+  font-size: 2rem;
+  margin: 5px;
+}
+
+.winner {
+  color: $color-pending;
+  font-size: 3rem;
+  margin: 5px;
+}
+
+.penalty-list {
+  @include flex($justify: flex-start);
+}
+
 .matchdetail {
   @include flex($justify: space-between);
-  margin-top: 2rem;
+  margin-top: 1rem;
   width: 100%;
   background-color: white;
+  // padding: 4rem 8rem;
   border-radius: 2rem;
-  padding: 3rem;
+  margin-bottom: 2rem;
+  font-size: 1rem;
   @include box-shadow();
+  &--blue {
+    border-radius: 0 2rem 2rem 0;
+    color: $white;
+    width: 50%;
+    background: linear-gradient(to right, #396afc, #2948ff);
+    @include flex($justify: space-between);
+  }
+
+  &--white {
+    width: 50%;
+    border-radius: 2rem 2rem 2rem 2rem;
+    @include flex($justify: space-between);
+  }
   &__player {
     @include flex($align: center, $justify: center, $direction: column);
-    width: 30%;
+    width: 50%;
     height: 30rem;
-    padding: 1rem;
+    padding: 0 6rem;
     text-align: center;
     &__image {
-      width: 15rem;
-      height: 15rem;
+      width: 10rem;
+      height: 10rem;
     }
     &__detail {
       @include flex($align: center, $direction: column);
       overflow: hidden;
     }
     &__match {
+      width: 50%;
       @include flex($align: center, $direction: column);
+      @include box-shadow();
+      &--blue {
+        background: linear-gradient(
+          90deg,
+          #ada996 0%,
+          #f2f2f2 33%,
+          #dbdbdb 66%,
+          #eaeaea 100%
+        );
+        padding: 2rem 0 2rem 2rem;
+        border-radius: 0 0.5rem 0.5rem 0;
+      }
+      &--white {
+        background: linear-gradient(
+          90deg,
+          #eaeaea 0%,
+          #dbdbdb 33%,
+          #f2f2f2 66%,
+          #ada996 100%
+        );
+        padding: 2rem 2rem 2rem 0;
+        border-radius: 0.5rem 0 0 0.5rem;
+      }
     }
   }
 }

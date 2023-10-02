@@ -39,7 +39,7 @@ const Request = ({ user }) => {
       </div>
       <div className={classes.request__button}>
         {loadingState.loadingState === loadingStateConst.PENDING ? (
-          <LottieAnimation height={10} width={200} />
+          <LottieAnimation width={"20rem"} />
         ) : (
           <Button className="btn--primary" title="Accept" />
         )}

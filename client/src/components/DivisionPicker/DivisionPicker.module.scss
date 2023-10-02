@@ -1,0 +1,62 @@
+@import "../../App.scss";
+
+.division_picker {
+  display: flex;
+  width: 20rem;
+
+  @include box-shadow();
+  border-radius: 1rem;
+  &__col {
+    @include flex($direction: column);
+    width: 50%;
+  }
+  &__item {
+    height: 4rem;
+    width: 100%;
+    @include flex();
+    &--header {
+      background: linear-gradient(to right, $color-primary, $color-secondary);
+      border: 1px solid $black;
+      text-align: center;
+      font-family: $heading-font;
+      font-size: 2rem;
+    }
+    &__input {
+      display: none;
+    }
+    &__label {
+      @include flex();
+      display: block;
+      height: 100%;
+      width: 100%;
+      border: 1px solid $black;
+      background: linear-gradient(to right, $color-primary, $color-secondary);
+      text-align: center;
+      font-family: $heading-font;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: $white;
+    }
+    &__input:checked + &__label {
+      background: rgba(255, 255, 255, 1);
+      color: rgb(20, 19, 19);
+    }
+
+    &__input:hover + &__label {
+      background: rgba(255, 255, 255, 1);
+      color: rgb(20, 19, 19);
+    }
+  }
+  &__col--left > &__item:last-child > &__item__label {
+    border-radius: 0 0 0 1rem;
+  }
+  &__col--right > &__item:last-child > &__item__label {
+    border-radius: 0 0 1rem 0;
+  }
+  &__col--left > &__item--header {
+    border-radius: 1rem 0 0 0;
+  }
+  &__col--right > &__item--header {
+    border-radius: 0 1rem 0 0;
+  }
+}

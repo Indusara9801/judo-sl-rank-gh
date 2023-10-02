@@ -5,11 +5,25 @@
   padding: 10rem;
 }
 
+.stat-icon {
+  color: $white;
+  font-size: 4rem;
+  cursor: pointer;
+}
+
+.stat-icon--disabled {
+  color: $color-disabled;
+  font-size: 4rem;
+  cursor: not-allowed;
+}
+
 .player {
   width: $container-width;
-  height: 20vh;
+  min-height: 20vh;
+  max-height: 27vh;
   @include flex($direction: column, $justify: center, $align: center);
   gap: 2rem;
+
   &__details {
     background: linear-gradient(to top right, $color-primary, $color-secondary);
     padding: 2rem;
@@ -18,52 +32,53 @@
     height: 100%;
     @include flex($justify: flex-start);
     border-radius: 2rem;
-    gap: 3rem;
+    gap: 42.5rem;
+    @include box-shadow();
+    &__info {
+      height: 100%;
+      @include flex($justify: flex-start);
+      gap: 2rem;
+    }
 
     &__stat {
+      min-width: 14rem;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      @include box-shadow();
+      @include flex($direction: column, $align: center, $justify: flex-start);
+      color: black;
+      background-color: $white;
+    }
+
+    %stripe {
+      margin-left: 0.5rem;
+      width: 3rem;
       height: 100%;
-      @include flex(
-        $direction: column,
-        $align: flex-start,
-        $justify: flex-start
-      );
     }
 
     &__stripe--yellow {
-      margin-left: 19.5rem;
+      @extend %stripe;
       background-color: yellow;
-      width: 3rem;
-      height: 100%;
     }
     &__stripe--orange {
-      margin-left: 19.5rem;
+      @extend %stripe;
       background-color: orange;
-      width: 3rem;
-      height: 100%;
     }
     &__stripe--green {
-      margin-left: 19.5rem;
+      @extend %stripe;
       background-color: green;
-      width: 3rem;
-      height: 100%;
     }
     &__stripe--blue {
-      margin-left: 19.5rem;
+      @extend %stripe;
       background-color: blue;
-      width: 3rem;
-      height: 100%;
     }
     &__stripe--brown {
-      margin-left: 19.5rem;
+      @extend %stripe;
       background-color: brown;
-      width: 3rem;
-      height: 100%;
     }
     &__stripe--black {
-      margin-left: 19.5rem;
+      @extend %stripe;
       background-color: black;
-      width: 3rem;
-      height: 100%;
     }
 
     &__main {
@@ -79,7 +94,7 @@
   &__image-container {
     width: 200px;
     height: 200px;
-    background-color: $color-primary;
+    background-color: $white;
   }
 
   &__image {

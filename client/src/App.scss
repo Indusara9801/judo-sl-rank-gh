@@ -6,12 +6,20 @@
 @import "styles/base/reset";
 @import "styles/base/typography";
 
+//components
+@import "styles/components/input";
+
+//common
+@import "styles/common/empty";
+
 //pages
 @import "styles/pages/login";
-@import "styles/pages/userInfo.scss";
+@import "styles/pages/userInfo";
 @import "styles/pages/signup";
 @import "styles/pages/admin/requests";
 @import "styles/pages/admin/players";
 @import "styles/pages/admin/player";
+@import "styles/pages/admin/addData";
 @import "styles/pages/home/home";
 @import "styles/pages/tournament";
+@import "styles/pages/ranking";

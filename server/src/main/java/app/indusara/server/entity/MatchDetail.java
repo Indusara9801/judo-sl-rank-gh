@@ -13,7 +13,7 @@ public class MatchDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer playerId;
+    private String playerId;
     private Boolean won;
     private Integer ippon;
     private Integer penalty;

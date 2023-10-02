@@ -10,12 +10,15 @@ const LottieAnimation = ({
   play = true,
 }) => {
   return (
-    <Lottie
-      className={classes["lottie-animation"]}
-      animationData={animationData}
-      loop={loop}
-      play={play}
-    />
+    <div className={classes["lottie-animation"]} style={{ width }}>
+      <Lottie
+        animationData={animationData}
+        loop={loop}
+        play={play}
+        height={height}
+        width={width}
+      />
+    </div>
   );
 };
 

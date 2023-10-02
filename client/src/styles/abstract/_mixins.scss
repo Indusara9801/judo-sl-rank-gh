@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @mixin background-clip($property) {
   background-clip: $property;
   -moz-background-clip: $property;
@@ -23,17 +25,69 @@
   box-shadow: $x $y $z rgba($black, 0.4);
 }
 
-$flexJustifyValues: ("center", "end", "start", "space-between");
-$flexAlignValues: ("center", "end", "start", "strech");
+$flexJustifyValues: (center, end, start, space-between);
+$flexAlignValues: (center, end, start, strech);
+$flexDirections: (column, row);
 
 @each $flexJustify in $flexJustifyValues {
   @each $flexAlign in $flexAlignValues {
-    .flex-#{$flexJustify}-#{$flexAlign} {
-      display: flex;
-      justify-content: $flexJustify;
-      align-items: $flexAlign;
+    @each $flexDirection in $flexDirections {
+      .flex-#{$flexJustify}-#{$flexAlign}-#{$flexDirection} {
+        display: flex;
+        justify-content: $flexJustify;
+        align-items: $flexAlign;
+        flex-direction: $flexDirection;
+        width: 100%;
+      }
     }
   }
+}
+
+.input {
+  @include flex($direction: column, $justify: center, $align: flex-start);
+  width: 100%;
+  padding: 1.5rem;
+  &__content {
+    width: 100%;
+    height: 3rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    padding: 0 1rem;
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.heading-form {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.8em;
+  margin-bottom: 0.5rem;
+}
+
+$colValues: (1, 2, 3, 4, 5, 6, 7);
+
+@function custom-divide($numerator, $denominator) {
+  @if $denominator == 0 {
+    @error "Division by zero is not allowed.";
+  }
+  @return calc(($numerator / $denominator) / 100);
+}
+
+@each $value in $colValues {
+  .col-#{$value} {
+    width: math.percentage(custom-divide(100, $value));
+  }
+  .col-#{$value}-flex {
+    @include flex($justify: center);
+    width: math.percentage(custom-divide(100, $value));
+  }
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 
 $values: (1, 2, 3, 4, 5);
@@ -85,5 +139,9 @@ $values: (1, 2, 3, 4, 5);
   }
   .p-#{$value} {
     padding: #{$value}rem;
+  }
+
+  .w-#{$value} {
+    width: #{$value}rem;
   }
 }

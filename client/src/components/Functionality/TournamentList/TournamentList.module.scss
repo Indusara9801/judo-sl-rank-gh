@@ -1,8 +1,10 @@
 @import "../../../App.scss";
 
 .tournamentlist {
-  width: 100%;
-  @include flex($direction: column);
+  width: $container-width;
+  height: 100vh;
+  background-color: $white;
+  @include flex($direction: column, $align: center, $justify: flex-start);
   &__table {
     margin-top: 1rem;
     border-radius: 1rem;

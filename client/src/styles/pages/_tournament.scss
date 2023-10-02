@@ -5,6 +5,46 @@
   padding: 4rem;
 }
 
+.tournament-matches {
+  width: 100%;
+  padding: 0 10rem;
+  @include flex($justify: space-around, $align: flex-start);
+  gap: 1rem;
+
+  &__picker {
+    @include flex($justify: center, $align: flex-start);
+    padding: 1rem;
+    width: 25%;
+  }
+  &__info {
+    min-width: 75%;
+    @include flex($justify: flex-start, $align: flex-start, $direction: column);
+    @include box-shadow();
+    background-color: $white;
+    min-height: 100vh;
+    padding: 4rem;
+    margin: 1rem;
+    &__header {
+      width: 100%;
+      @include flex($justify: space-between, $align: flex-start);
+      margin: 1rem;
+    }
+  }
+  &__list {
+    width: 100%;
+    @include flex($justify: flex-start, $align: flex-start, $direction: column);
+    &__round {
+      @include flex($justify: flex-start, $align: center, $direction: column);
+      width: 100%;
+      border: 5px solid rgba($color-primary, 1);
+      margin-bottom: 1rem;
+      border-radius: 1rem;
+      font-size: 2.5rem;
+      padding: 0.5rem;
+    }
+  }
+}
+
 .tournament {
   width: $container-width;
   height: 20vh;
@@ -13,12 +53,18 @@
   &__details {
     background: linear-gradient(to top right, $color-primary, $color-secondary);
     padding: 2rem;
-    // margin-top: -4rem;
     width: 90%;
     height: 100%;
     @include flex($justify: flex-start);
     border-radius: 2rem;
     gap: 3rem;
+    @include box-shadow();
+    &__image {
+      height: 10rem;
+      width: 15rem;
+    }
+    &__info {
+    }
 
     &__stat {
       height: 100%;
@@ -47,7 +93,7 @@
         color: $white;
         border-radius: 1rem;
         th {
-          width: 25rem;
+          width: 50rem;
           padding: 1rem;
           font-size: 2em;
           text-align: center;
@@ -66,7 +112,7 @@
         font-size: 1.3em;
         border: 2px solid black;
         td {
-          width: 25rem;
+          width: 50rem;
           padding: 1rem;
           font-size: 1.3em;
           text-align: center;

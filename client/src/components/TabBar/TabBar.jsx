@@ -10,29 +10,30 @@ const TabBar = ({ valueList, onClickRadio, defaultVal, width }) => {
       <div className={classes.navbar__tabbar}>
         {valueList.map((val, index) => {
           const uniqueVal = uuidv4();
+          console.log(val === currVal);
           return (
-            <label
-              key={index}
-              htmlFor={`item_${index}_${uniqueVal}`}
-              className={classes.navbar__tabbar__tab}
-              style={{ width }}
-            >
+            <>
               <input
                 type="radio"
-                className={classes.navbar__tabbar__tab__input}
+                className={classes.navbar__tabbar__input}
                 name="menu"
                 id={`item_${index}_${uniqueVal}`}
                 value={val}
-                checked={val === currVal}
-                onChange={() => {
+                checked={val == currVal}
+                onChange={(e) => {
                   setCurrValue(val);
                   onClickRadio(val);
                 }}
               />
-              <div className={classes.navbar__tabbar__tab__block_background}>
-                <div className={classes.navbar__tabbar__tab__block}>{val}</div>
-              </div>
-            </label>
+              <label
+                key={index}
+                htmlFor={`item_${index}_${uniqueVal}`}
+                className={classes.navbar__tabbar__tab}
+                style={{ width }}
+              >
+                {val}
+              </label>
+            </>
           );
         })}
       </div>

@@ -1,6 +1,5 @@
 package app.indusara.server.rest;
 
-import app.indusara.server.dao.PlayerRepository;
 import app.indusara.server.entity.Player;
 import app.indusara.server.service.IPlayerService;
 import lombok.RequiredArgsConstructor;
@@ -17,5 +16,10 @@ public class PlayerController {
     @GetMapping("/player/{id}")
     public ResponseEntity<Player> getPlayer(@PathVariable Integer id) {
         return ResponseEntity.ok(playerService.getPlayer(id));
+    }
+
+    @GetMapping("/playerByEmail/{email}")
+    public Player getPlayerByEmail(@PathVariable String email) {
+        return playerService.getPlayerByEmail(email);
     }
 }

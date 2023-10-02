@@ -24,6 +24,8 @@ public class UserController {
         return ResponseEntity.ok(userService.getPaidUsers());
     }
 
+
+
     @GetMapping("/requests")
     public ResponseEntity<List<User>> getRequests() {
         return ResponseEntity.ok(userService.getUnPaidUsers());

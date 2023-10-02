@@ -30,5 +30,5 @@ public class Account {
     private String clubName;
     private String province;
     private String judoGrade;
-    private String weightClass;
+    private Integer weightClass;
 }

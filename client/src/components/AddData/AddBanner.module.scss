@@ -1,0 +1,33 @@
+@import "../../App.scss";
+
+.add {
+  display: flex;
+  height: 15%;
+  width: 80%;
+  background-color: $white;
+  border-radius: 1rem;
+  @include box-shadow();
+  transition: all 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    transform: translate(-0.5rem, 0.5rem);
+    @include box-shadow(0.2rem, 0.5rem, 1rem);
+  }
+
+  &__image {
+    height: 100%;
+    border-radius: 1rem 0 0 1rem;
+    clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
+    width: 40%;
+    object-fit: cover;
+  }
+
+  &__text {
+    height: 100%;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

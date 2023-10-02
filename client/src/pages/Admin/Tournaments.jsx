@@ -5,8 +5,9 @@ import { tournamentListTypes } from "../../constants";
 const Tournaments = () => {
   return (
     <>
-      <Header />
-      <TournamentList type={tournamentListTypes.ALL} />
+      <div className="flex-start-center-column">
+        <TournamentList header={<Header />} type={tournamentListTypes.ALL} />
+      </div>
     </>
   );
 };

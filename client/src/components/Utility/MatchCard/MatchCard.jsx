@@ -14,13 +14,21 @@ const MatchCard = ({ match }) => {
           });
         }}
       >
-        <div className={`${classes.matchcard__summary} mt-5`}>
+        <div className={`${classes.matchcard__summary}`}>
           <div className="heading-dark-5">{match.name}</div>
+          <div className="heading-dark-5">
+            ({Math.floor(match.time / 60)}m
+            {match.time - Math.floor(match.time / 60) * 60}s)
+          </div>
         </div>
       </div>
       {detailToggle && (
         <MatchDetail
-          match={{ player1: match.matchPlayer1, player2: match.matchPlayer2 }}
+          match={{
+            matchDetails: { name: match.name, time: match.time },
+            player1: match.player1,
+            player2: match.player2,
+          }}
         />
       )}
     </>
