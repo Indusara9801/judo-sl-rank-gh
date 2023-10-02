@@ -16,6 +16,8 @@ import Tournament from "./pages/Tournament";
 import axios from "axios";
 import { localStorageKeys } from "./constants";
 import Tournaments from "./pages/Admin/Tournaments";
+import AddData from "./pages/Admin/AddData/AddData";
+import Ranking from "./pages/Ranking";
 
 function App() {
   axios.interceptors.request.use((config) => {
@@ -35,6 +37,9 @@ function App() {
   return (
     <>
       <Switch>
+        <Route path="/" exact>
+          <Redirect to="/login" />
+        </Route>
         <Route path="/accountConfirm">
           <AccountConfirm />
         </Route>
@@ -50,9 +55,16 @@ function App() {
         <Route path="/home">
           <Home />
         </Route>
+        <Route path="/admin/add">
+          <AddData />
+        </Route>
         <Route path="/payment">
           <Payment />
         </Route>
+        <Route path="/admin/ranking">
+          <Ranking />
+        </Route>
+
         <Route path="/admin/players" exact>
           <Players />
         </Route>

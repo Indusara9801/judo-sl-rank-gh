@@ -20,17 +20,15 @@ const Login = () => {
   const dispatch = useDispatch();
   const status = useSelector((state) => state.status);
   const loadingState = useSelector((state) => state.loadingState);
-  const user = useSelector(state => state.user);
+  const user = useSelector((state) => state.user);
   const emailRef = useRef();
   const passwordRef = useRef();
   const validRegex =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-
   const checkEmailValidity = (validity) => {
     setEmailIsValid(validity);
   };
-
 
   const checkPasswordValidity = (validity) => {
     setPasswordIsValid(validity);
@@ -51,10 +49,9 @@ const Login = () => {
     formIsValid = true;
   }
 
-
   if (user && user.authenticated) {
     if (user.type === userTypes.ADMIN) {
-      history.push('admin');
+      history.push("admin");
     }
   }
 
@@ -73,8 +70,6 @@ const Login = () => {
     emailRef.current.reset();
     passwordRef.current.reset();
   };
-
-
 
   return (
     <main>
@@ -112,7 +107,7 @@ const Login = () => {
 
             <div className="login-container__buttons">
               {loadingState.loadingState === loadingStateConst.PENDING ? (
-                <LottieAnimation height={20} width={400} />
+                <LottieAnimation width={"20rem"} />
               ) : (
                 <Button
                   className={"btn--primary"}

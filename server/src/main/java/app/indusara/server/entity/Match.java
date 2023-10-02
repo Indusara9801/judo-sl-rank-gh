@@ -1,36 +1,42 @@
 package app.indusara.server.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Comparator;
+
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Match {
+public class Match implements Comparator<Match> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
 
-    private Integer weightClass;
+    private Double time;
 
-    private String division;
+    private Integer tier;
 
-    @ManyToOne
-    @JoinColumn(name = "t_id")
-    @JsonIgnore
-    private Tournament tournament;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "tournament_division_id")
+    private TournamentDivision tournamentDivision;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "player1")
     private MatchDetail matchPlayer1;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "player2")
     private MatchDetail matchPlayer2;
+
+
+    @Override
+    public int compare(Match o1, Match o2) {
+        return o1.getTier().compareTo(o2.getTier());
+    }
 }

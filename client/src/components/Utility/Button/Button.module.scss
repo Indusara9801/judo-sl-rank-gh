@@ -40,3 +40,10 @@
     padding: 1rem;
 }
 
+.btn--black{
+    @extend %btn;
+    position: relative;
+    background-color: $black;
+    padding: 1rem;
+}
+

@@ -1,0 +1,56 @@
+@import "../../App.scss";
+
+.ranking_banner {
+  @include flex($justify: flex-start);
+  @include box-shadow();
+  width: 100rem;
+
+  background-color: $white;
+  padding: 1rem;
+  gap: 1rem;
+  border-radius: 0.3rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  &__place {
+    width: 4rem;
+    padding: 1rem;
+  }
+  &__change {
+    @include flex();
+    width: 12rem;
+    gap: 2rem;
+    padding: 1rem;
+  }
+  &__player {
+    width: 32rem;
+    padding: 1rem;
+  }
+  &__club {
+    width: 28rem;
+    padding: 1rem;
+  }
+  &__points {
+    width: 8rem;
+    padding: 1rem;
+  }
+  &__wins {
+    width: 8rem;
+    padding: 1rem;
+  }
+  &__losses {
+    width: 8rem;
+    padding: 1rem;
+  }
+}
+
+.up {
+  color: $color-success;
+}
+
+.down {
+  color: $color-error;
+}
+
+.equal {
+  color: $color-disabled;
+}

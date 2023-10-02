@@ -10,11 +10,13 @@ import { useParams, Link } from "react-router-dom";
 import LottieAnimation from "../../Utility/LottieAnimation/LottieAnimation";
 import TabBar from "../../TabBar/TabBar";
 import axios from "axios";
+import Header from "../../Header/Header";
+import emptyAnimation from "../../../../lotties/empty.json";
 const TournamentList = ({ type }) => {
   const dispatch = useDispatch();
   const params = useParams();
 
-  const [year, setYear] = useState(2021);
+  const [year, setYear] = useState(new Date().getFullYear());
   const yearList = [2023, 2022, 2021, 2020];
   const [tournamentlist, setTournamentList] = useState([]);
   const [localState, setLocalState] = useState(loadingStateConst.IDLE);
@@ -40,84 +42,120 @@ const TournamentList = ({ type }) => {
   console.log(tournamentlist);
 
   return (
-    <div className={classes.tournamentlist}>
-      <TabBar
+    <>
+      {/* {type === tournamentListTypes.PLAYER ? (
+        <> </>
+      ) : (
+        <Header
+          body={
+            <TabBar
+              valueList={yearList}
+              onClickRadio={onClickRadioHandler}
+              defaultVal={2023}
+              width="27rem"
+            />
+          }
+        />
+      )} */}
+      <Header
+        body={
+          <TabBar
+            valueList={yearList}
+            onClickRadio={onClickRadioHandler}
+            defaultVal={2023}
+            width="27rem"
+          />
+        }
+      />
+
+      {/* <TabBar
         valueList={yearList}
         onClickRadio={onClickRadioHandler}
         defaultVal={2023}
-        width="25rem"
-      />
-      {localState === loadingStateConst.PENDING ? (
-        <>
-          <div className="heading-dark-7">Please wait while the data loads</div>
-          <LottieAnimation height={20} width={400} />
-        </>
-      ) : (
-        <>
-          {tournamentlist.length === 0 ? (
-            <div>No tournaments in this year</div>
-          ) : type === tournamentListTypes.PLAYER ? (
-            <table className={classes.tournamentlist__table}>
-              <thead>
-                <tr>
-                  <th>Tournament</th>
-                  <th>Date</th>
-                  <th>Position</th>
-                  <th>See more</th>
-                </tr>
-              </thead>
-              <tbody>
-                {tournamentlist.map((item) => {
-                  console.log(item.position);
-                  return (
-                    <tr key={item.tournamentId}>
-                      <td>{item.tournament}</td>
-                      <td>{item.date}</td>
-                      <td>{item.position}</td>
-                      <td>
-                        <Link
-                          to={`/admin/tournament/points?tournamentID=${item.tournamentId}`}
-                        >
-                          More details
-                        </Link>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          ) : (
-            <table className={classes.tournamentlist__table}>
-              <thead>
-                <tr>
-                  <th>Tournament</th>
-                  <th>Date</th>
-                  <th>See more</th>
-                </tr>
-              </thead>
-              <tbody>
-                {tournamentlist.map((item) => {
-                  
-                  return (
-                    <tr key={item.id}>
-                      <td>{item.points.tournament}</td>
-                      <td>{item.date}</td>
-                      <td>
-                        <Link
-                          to={`/admin/tournament/points?tournamentID=${item.id}`}
-                        >
-                          More details
-                        </Link>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          )}
-        </>
-      )}
-    </div>
+        width="27rem"
+      /> */}
+
+      <div className={classes.tournamentlist}>
+        {localState === loadingStateConst.PENDING ? (
+          <>
+            <div className="heading-dark-7">
+              Please wait while the data loads
+            </div>
+            <LottieAnimation width={"20rem"} />
+          </>
+        ) : (
+          <>
+            {tournamentlist.length === 0 ? (
+              <div className="empty">
+                <div className="heading-dark-3">No tournaments found</div>
+
+                <LottieAnimation
+                  width={"40rem"}
+                  animationData={emptyAnimation}
+                />
+              </div>
+            ) : type === tournamentListTypes.PLAYER ? (
+              <table className={classes.tournamentlist__table}>
+                <thead>
+                  <tr>
+                    <th>Tournament</th>
+                    <th>Date</th>
+                    <th>Position</th>
+                    <th>See more</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {tournamentlist.map((item) => {
+                    console.log(item.position);
+                    return (
+                      <tr key={item.tournamentId}>
+                        <td>{item.tournament}</td>
+                        <td>{item.date}</td>
+                        <td>{item.position}</td>
+                        <td>
+                          <Link
+                            to={`/admin/tournament?tournamentID=${item.tournamentId}`}
+                          >
+                            More details
+                          </Link>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            ) : (
+              <table className={classes.tournamentlist__table}>
+                <thead>
+                  <tr>
+                    <th>Tournament</th>
+                    <th>Date</th>
+                    <th>See more</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {tournamentlist.map((item) => {
+                    return (
+                      <tr key={item.id}>
+                        <td>{item.points.tournament}</td>
+                        <td>{item.date}</td>
+                        <td>
+                          <Link
+                            to={`/admin/tournament?tournamentID=${item.id}`}
+                          >
+                            More details
+                          </Link>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            )}
+          </>
+        )}
+      </div>
+    </>
   );
 };
 

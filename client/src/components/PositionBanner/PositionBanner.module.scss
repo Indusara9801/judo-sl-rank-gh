@@ -1,0 +1,64 @@
+@import "../../App.scss";
+
+.position_banner {
+  @include flex($justify: flex-start);
+  @include box-shadow();
+  width: 75rem;
+  background-color: $white;
+  min-height: 5rem;
+  gap: 1rem;
+  border-radius: 0.3rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  &__position {
+    width: 10rem;
+    min-height: 5rem;
+    padding: 1rem;
+    border-radius: 0.3rem;
+    background: linear-gradient(to right, $color-primary, $color-secondary);
+    @include flex($justify: flex-start);
+    gap: 1rem;
+  }
+  &__player {
+    min-height: 5rem;
+    width: 50rem;
+    padding: 1.5rem;
+    @include flex($justify: flex-start);
+    gap: 2rem;
+    &__image {
+      height: 5rem;
+      width: 5rem;
+    }
+    &__db_player {
+      @include flex($justify: flex-start);
+      gap: 2rem;
+    }
+
+    &__non_db_player {
+      @include flex($justify: flex-start);
+      gap: 2rem;
+    }
+  }
+  &__icon {
+    color: $white;
+    font-size: 3rem;
+  }
+  &__icon--gold {
+    color: gold;
+    font-size: 3rem;
+  }
+  &__icon--silver {
+    color: silver;
+    font-size: 3rem;
+  }
+  &__icon--bronze {
+    color: brown;
+    font-size: 3rem;
+  }
+}
+
+.position_players {
+  margin-top: 1rem;
+  @include flex($direction: column);
+  gap: 0.5rem;
+}

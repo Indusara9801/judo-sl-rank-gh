@@ -2,19 +2,26 @@
 
 #section-header {
   @include flex($direction: column);
+ 
   width: 100vw;
-  height: 5vh;
-  background: $black;
+  min-height: 10vh;
+  background: linear-gradient(to top right, $color-primary, $color-secondary);
   padding: 2rem;
+  margin-bottom: 1rem;
 }
 
 .header {
+  &__info {
+    @include flex();
+    gap: 1rem;
+  }
   &__container {
     width: $container-width;
-    @include flex($justify: space-between);
+    @include flex($justify: space-between, $align: flex-start);
   }
 
   &__logo {
+    height: 10rem;
   }
 
   &__action {
@@ -41,4 +48,8 @@
       width: 9rem;
     }
   }
+}
+
+.content {
+  margin-top: 1rem;
 }

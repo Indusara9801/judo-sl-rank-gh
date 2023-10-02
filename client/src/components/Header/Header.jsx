@@ -8,8 +8,9 @@ import {
   useHistory,
 } from "react-router-dom/cjs/react-router-dom.min";
 import { userActions } from "../../store/user/user";
+import logo from "../../assets/logo.png";
 
-const Header = () => {
+const Header = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -18,16 +19,20 @@ const Header = () => {
     dispatch(signOutUser());
     dispatch(userActions.logOutUser());
     history.push("/login");
-    
   };
 
   return (
     <header id={classes["section-header"]}>
       <div className={classes.header}>
         <div className={classes.header__container}>
-          <div className={`${classes.header__logo} heading-light-2`}>
-            JUDO RANKING
+          <div className={classes.header__info}>
+            <img src={logo} className={classes.header__logo} alt="logo" />
+            <div className={classes.header__titles}>
+              <div className="heading-light-2">Sri Lanka Judo Assocoaition</div>
+              <div className="heading-light-5">Player Ranking System</div>
+            </div>
           </div>
+
           <div className={classes.header__action}>
             <div className={`${classes.header__action__nav} heading-light-6`}>
               <ul>
@@ -49,10 +54,7 @@ const Header = () => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink
-                      activeClassName={classes.active}
-                      to="/admin/add"
-                    >
+                    <NavLink activeClassName={classes.active} to="/admin/add">
                       Add Data
                     </NavLink>
                   </li>
@@ -62,6 +64,14 @@ const Header = () => {
                       to="/admin/tournaments"
                     >
                       Tournaments
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      activeClassName={classes.active}
+                      to="/admin/ranking"
+                    >
+                      Ranking
                     </NavLink>
                   </li>
                 </Route>
@@ -89,13 +99,14 @@ const Header = () => {
             <div className={classes.header__action__logout}>
               <Button
                 title="Log Out"
-                className="btn--secondary"
+                className="btn--black"
                 onClick={clickHandler}
               />
             </div>
           </div>
         </div>
       </div>
+      <div className={classes.content}>{props.body}</div>
     </header>
   );
 };

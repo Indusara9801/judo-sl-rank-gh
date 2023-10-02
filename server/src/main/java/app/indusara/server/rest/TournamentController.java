@@ -1,12 +1,12 @@
 package app.indusara.server.rest;
 
-import app.indusara.server.dto.FullTournament;
+
+import app.indusara.server.dto.TournamentPostDto;
 import app.indusara.server.entity.Tournament;
+import app.indusara.server.helper.TournamentWithDivision;
 import app.indusara.server.service.ITournamentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,7 +21,13 @@ public class TournamentController {
     }
 
     @GetMapping("/tournament/{id}")
-    public FullTournament getTournament(@PathVariable Integer id) {
+    public Tournament getTournament(@PathVariable Integer id) {
         return tournamentService.getTournament(id);
+    }
+
+    @PostMapping("/tournaments")
+    public void save(@RequestBody TournamentPostDto tournamentPostDto) {
+        tournamentService.save(new TournamentWithDivision(tournamentPostDto));
+
     }
 }

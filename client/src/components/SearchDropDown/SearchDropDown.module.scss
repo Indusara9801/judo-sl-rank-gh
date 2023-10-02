@@ -1,0 +1,43 @@
+@import "../../App.scss";
+
+.search_dropdown {
+  &__input {
+    @include flex($direction: column, $justify: center, $align: flex-start);
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    position: relative;
+    &__dropdown {
+      position: absolute;
+      width: 40rem;
+      max-height: 15rem;
+      background-color: $white;
+      border: 1px solid $black;
+      overflow: scroll;
+      &__item {
+        cursor: pointer;
+        width: 100%;
+        
+        padding: .5rem;
+        height: 3rem;
+        border: 1px solid $black;
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
+
+.message {
+  input {
+    border: 1px solid $color-pending;
+    background-color: lighten($color: $color-pending, $amount: 30%);
+  }
+  input:focus {
+    border: 1px solid $color-pending;
+    background-color: lighten($color: $color-pending, $amount: 35%);
+  }
+}
+
+.message-text {
+  color: $color-pending;
+}

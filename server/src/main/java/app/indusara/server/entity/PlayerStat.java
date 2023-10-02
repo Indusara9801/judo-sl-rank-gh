@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class PlayerStat {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private Integer wins;
@@ -22,15 +23,21 @@ public class PlayerStat {
 
     private Integer points;
 
-    @OneToOne(mappedBy = "playerStat")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "division_id")
+    private Division division;
+
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonIgnore
     private Player player;
 
-    public PlayerStat(Integer id,Integer wins, Integer losses, Integer points) {
-        this.id = id;
+
+
+    public PlayerStat(Integer wins, Integer losses, Integer points, Division division) {
         this.wins = wins;
         this.losses = losses;
         this.points = points;
+        this.division = division;
     }
 
     @Override

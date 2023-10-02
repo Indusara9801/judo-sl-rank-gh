@@ -1,0 +1,74 @@
+#section-ranking {
+  padding: 2rem;
+  @include flex($justify: flex-start, $align: center, $direction: column);
+  height: 100vh;
+  width: 100vw;
+}
+
+.ranking {
+  width: $container-width;
+  gap: 3rem;
+  @include flex($justify: flex-start, $align: flex-start);
+  &__picker {
+    @include flex($justify: flex-start);
+    padding: 1rem;
+  }
+  &__rank-list {
+    @include flex($justify: flex-start, $direction: column);
+  }
+  &__banner {
+    @include flex($justify: flex-start);
+    @include box-shadow();
+    width: 100rem;
+    background: linear-gradient(to right, $color-primary, $color-secondary);
+    padding: 1rem;
+    gap: 1rem;
+    border-radius: 0.3rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    &__place {
+      width: 8rem;
+      padding: 1rem;
+    }
+    &__change {
+      width: 12rem;
+      padding: 1rem;
+    }
+    &__player {
+      width: 32rem;
+      padding: 1rem;
+    }
+    &__club {
+      width: 28rem;
+      padding: 1rem;
+    }
+    &__points {
+      width: 8rem;
+      padding: 1rem;
+    }
+    &__wins {
+      width: 8rem;
+      padding: 1rem;
+    }
+    &__losses {
+      width: 8rem;
+      padding: 1rem;
+    }
+    // &__icon {
+    //   color: $color-primary;
+    //   font-size: 3rem;
+    // }
+    // &__icon--gold {
+    //   color: gold;
+    //   font-size: 3rem;
+    // }
+    // &__icon--silver {
+    //   color: silver;
+    //   font-size: 3rem;
+    // }
+    // &__icon--bronze {
+    //   color: brown;
+    //   font-size: 3rem;
+    // }
+  }
+}

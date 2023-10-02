@@ -20,28 +20,17 @@ import java.time.LocalDate;
                 "`judo-ranking`.tournament.date AS date, " +
                 "`judo-ranking`.tournament.year AS year, " +
                 "`judo-ranking`.participate.position AS position " +
-                "FROM `judo-ranking`.tournament " +
+                "FROM `judo-ranking`.tournament_division " +
+                "JOIN  `judo-ranking`.tournament " +
+                "ON `judo-ranking`.tournament_division.`tournament_id` = `judo-ranking`.tournament.id " +
                 "JOIN `judo-ranking`.points " +
-                "ON `judo-ranking`.tournament.id = `judo-ranking`.points.id " +
+                "ON `judo-ranking`.tournament.point_id = `judo-ranking`.points.id " +
                 "JOIN `judo-ranking`.participate " +
-                "ON `judo-ranking`.tournament.id = `judo-ranking`.participate.tournament_id " +
+                "ON `judo-ranking`.tournament_division.id = `judo-ranking`.participate.tournament_division_id " +
                 "WHERE `judo-ranking`.tournament.year = :year " +
-                "AND `judo-ranking`.participate.player_id = :playerId",
-        resultSetMapping = "player_tournament_dto"
+                "AND `judo-ranking`.participate.player_id = :playerId", resultSetMapping = "player_tournament_dto"
 )
-@SqlResultSetMapping(
-        name = "player_tournament_dto",
-        classes = @ConstructorResult(
-                targetClass = PlayerTournamentDto.class,
-                columns =  {
-                      @ColumnResult(name = "tournamentId", type = Integer.class),
-                      @ColumnResult(name = "tournament", type = String.class),
-                      @ColumnResult(name = "date", type = LocalDate.class),
-                      @ColumnResult(name = "year", type = String.class),
-                      @ColumnResult(name = "position", type = Integer.class),
-                }
-        )
-)
+@SqlResultSetMapping(name = "player_tournament_dto", classes = @ConstructorResult(targetClass = PlayerTournamentDto.class, columns = {@ColumnResult(name = "tournamentId", type = Integer.class), @ColumnResult(name = "tournament", type = String.class), @ColumnResult(name = "date", type = LocalDate.class), @ColumnResult(name = "year", type = String.class), @ColumnResult(name = "position", type = Integer.class),}))
 public class Participate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,7 +42,23 @@ public class Participate {
     @JoinColumn(name = "player_id")
     private Player player;
 
-    @ManyToOne
-    @JoinColumn(name = "tournament_id")
-    private Tournament tournament;
+
+    private String nonDbPlayer;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "tournamet_division_id")
+    private TournamentDivision tournamentDivision;
+
+
+    public Participate(Integer position, Player player, TournamentDivision tournamentDivision) {
+        this.position = position;
+        this.player = player;
+        this.tournamentDivision = tournamentDivision;
+    }
+
+    public Participate(Integer position, String nonDbPlayer, TournamentDivision tournamentDivision) {
+        this.position = position;
+        this.nonDbPlayer = nonDbPlayer;
+        this.tournamentDivision = tournamentDivision;
+    }
 }
